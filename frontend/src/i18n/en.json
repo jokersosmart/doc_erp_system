@@ -1,0 +1,75 @@
+{
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "loginButton": "Sign In",
+    "invalidCredentials": "Invalid username or password"
+  },
+  "dashboard": {
+    "title": "Project Dashboard",
+    "documents": "Documents",
+    "compliance": "Compliance Status",
+    "dependencies": "Dependency Graph"
+  },
+  "document": {
+    "lifecycle": {
+      "DRAFT": "Draft",
+      "REVIEW": "In Review",
+      "APPROVED": "Approved",
+      "OBSOLETE": "Obsolete"
+    },
+    "lock": {
+      "UNLOCKED": "Unlocked",
+      "LOCKED": "Locked",
+      "PENDING_QRA": "Pending QRA Approval"
+    },
+    "markReviewed": "Mark as Reviewed & Updated",
+    "emergencyOverride": "Emergency Override Unlock",
+    "commit": "Commit to Git"
+  },
+  "wizard": {
+    "title": "AI Project Onboarding Wizard",
+    "continue": "Continue from where you left off",
+    "startOver": "Start Over",
+    "next": "Next",
+    "previous": "Previous",
+    "finish": "Finish & Create Project"
+  },
+  "ai": {
+    "consultant": "AI Consultant",
+    "invokeConsultant": "Invoke AI Consultant",
+    "accept": "Accept",
+    "reject": "Reject",
+    "offlineBanner": "AI Consultant is currently offline — showing static compliance rule suggestions",
+    "clauseRef": "Standard Clause Reference"
+  },
+  "audit": {
+    "check": "Compliance Check",
+    "export": "Export Audit Package",
+    "history": "Audit Package History",
+    "validationPassed": "Validation Passed",
+    "validationIssues": "{{count}} potential issue(s)"
+  },
+  "fmeda": {
+    "title": "FMEDA Worksheet",
+    "calculate": "Calculate",
+    "spfm": "SPFM",
+    "lfm": "LFM",
+    "pmhf": "PMHF",
+    "threshold": "ASIL Threshold",
+    "pass": "Pass",
+    "fail": "Below Threshold"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "loading": "Loading…",
+    "error": "An error occurred",
+    "success": "Operation successful",
+    "confirm": "Confirm",
+    "search": "Search"
+  }
+}

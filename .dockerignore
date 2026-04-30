@@ -1,0 +1,24 @@
+# Docker build — exclude unnecessary files from image context
+node_modules/
+.git/
+.gitignore
+*.md
+dist/
+build/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.log
+.env
+.env.*
+!.env.example
+postgres-data/
+redis-data/
+backend/storage/
+specs/
+*.override.yml
+.vscode/
+.idea/
+htmlcov/
+.coverage

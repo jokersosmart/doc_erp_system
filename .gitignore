@@ -1,0 +1,70 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+*.log
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.prof
+
+# === Node.js / Frontend ===
+node_modules/
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+.npm
+.yarn
+.pnp
+.pnp.js
+
+# === Docker ===
+*.override.yml
+
+# === IDE ===
+.vscode/
+.idea/
+*.suo
+*.user
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# === DB / Secrets ===
+*.sqlite3
+*.db
+postgres-data/
+redis-data/
+*.pem
+*.key
+*.crt
+
+# === Alembic ===
+backend/migrations/versions/__pycache__/
+
+# === Audit Package Storage ===
+backend/storage/audit_packages/
+
+# === Temp ===
+*.tmp
+*.bak
+.speckit/

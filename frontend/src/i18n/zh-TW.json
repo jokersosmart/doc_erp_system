@@ -1,0 +1,75 @@
+{
+  "auth": {
+    "login": "登入",
+    "logout": "登出",
+    "username": "帳號",
+    "password": "密碼",
+    "loginButton": "登入",
+    "invalidCredentials": "帳號或密碼錯誤"
+  },
+  "dashboard": {
+    "title": "專案儀表板",
+    "documents": "文件",
+    "compliance": "合規狀態",
+    "dependencies": "依賴關係圖"
+  },
+  "document": {
+    "lifecycle": {
+      "DRAFT": "草稿",
+      "REVIEW": "審查中",
+      "APPROVED": "已核准",
+      "OBSOLETE": "已廢止"
+    },
+    "lock": {
+      "UNLOCKED": "未鎖定",
+      "LOCKED": "已鎖定",
+      "PENDING_QRA": "待 QRA 核准"
+    },
+    "markReviewed": "標記為已審查並更新",
+    "emergencyOverride": "緊急覆蓋解鎖",
+    "commit": "提交至 Git"
+  },
+  "wizard": {
+    "title": "AI 專案建立精靈",
+    "continue": "繼續上次進度",
+    "startOver": "重新開始",
+    "next": "下一步",
+    "previous": "上一步",
+    "finish": "完成並建立專案"
+  },
+  "ai": {
+    "consultant": "AI 顧問",
+    "invokeConsultant": "呼叫 AI 顧問",
+    "accept": "接受",
+    "reject": "拒絕",
+    "offlineBanner": "AI 顧問目前離線，顯示靜態合規規則建議",
+    "clauseRef": "標準條文參照"
+  },
+  "audit": {
+    "check": "合規性檢查",
+    "export": "匯出稽核包",
+    "history": "稽核包歷史",
+    "validationPassed": "驗證通過",
+    "validationIssues": "{{count}} 個潛在問題"
+  },
+  "fmeda": {
+    "title": "FMEDA 工作表",
+    "calculate": "計算",
+    "spfm": "SPFM",
+    "lfm": "LFM",
+    "pmhf": "PMHF",
+    "threshold": "ASIL 門檻",
+    "pass": "通過",
+    "fail": "未達標"
+  },
+  "common": {
+    "save": "儲存",
+    "cancel": "取消",
+    "close": "關閉",
+    "loading": "載入中…",
+    "error": "發生錯誤",
+    "success": "操作成功",
+    "confirm": "確認",
+    "search": "搜尋"
+  }
+}
