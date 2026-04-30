@@ -93,6 +93,5 @@ def decode_token(token: str) -> dict[str, Any]:
 
 
 def hash_token(token: str) -> str:
-    """Hash a refresh token for storage (SHA-256 via passlib)."""
-    import hashlib
+    """Hash a refresh token for storage (SHA-256)."""
     return hashlib.sha256(token.encode()).hexdigest()
