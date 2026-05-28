@@ -7,7 +7,7 @@ import uuid
 from datetime import datetime
 
 from sqlalchemy import Boolean, DateTime, Enum, ForeignKey, Index, Integer, String, Text
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
 
@@ -49,6 +49,7 @@ class Document(Base):
     title: Mapped[str] = mapped_column(String(500), nullable=False)
     document_type: Mapped[str] = mapped_column(String(50), nullable=False, default="spec")
     content_markdown: Mapped[str] = mapped_column(Text, nullable=False, default="")
+    standards_scope: Mapped[list[str]] = mapped_column(JSONB, nullable=False, default=list)
     lifecycle_state: Mapped[LifecycleState] = mapped_column(
         Enum(LifecycleState), nullable=False, default=LifecycleState.DRAFT
     )
@@ -61,9 +62,16 @@ class Document(Base):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()
     )
+    last_transition_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     project: Mapped["Project"] = relationship("Project", back_populates="documents")
     spec_items: Mapped[list["SpecItem"]] = relationship("SpecItem", back_populates="document")
+    revisions: Mapped[list["DocumentRevision"]] = relationship(
+        "DocumentRevision", back_populates="document", cascade="all, delete-orphan"
+    )
+    transition_events: Mapped[list["DocumentTransitionEvent"]] = relationship(
+        "DocumentTransitionEvent", back_populates="document", cascade="all, delete-orphan"
+    )
     lock_events_triggered: Mapped[list["LockEvent"]] = relationship(
         "LockEvent",
         foreign_keys="LockEvent.upstream_document_id",

@@ -1,0 +1,16 @@
+{
+  "name": "doc-erp-hyperframes-relation-viz",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal HyperFrames workflow to visualize file relationships for Doc ERP",
+  "scripts": {
+    "build:data": "node ./scripts/build-relations.mjs",
+    "analyze:impact": "node ./scripts/analyze-impact.mjs",
+    "preview": "npx hyperframes preview",
+    "render": "npx hyperframes render",
+    "prepare": "npm run build:data"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

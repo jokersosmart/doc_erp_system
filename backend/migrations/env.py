@@ -11,7 +11,8 @@ from app.core.config import settings
 from app.core.database import Base
 
 # Import model modules so metadata is populated.
-from app.models import document, lock_event, org, spec_item  # noqa: F401
+from app.models import audit_event, document, lock_event, notification, org, spec_item  # noqa: F401
+from app.models import attribute_definition, document_revision, standard  # noqa: F401
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)

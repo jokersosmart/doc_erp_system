@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doc ERP File Relation Overview</title>
+    <style>
+      :root {
+        --bg-0: #0c1118;
+        --bg-1: #121b27;
+        --card: rgba(255, 255, 255, 0.08);
+        --line: rgba(162, 184, 255, 0.52);
+        --text: #eef6ff;
+        --muted: #b6c7de;
+        --backend: #7ec8ff;
+        --frontend: #8de9c5;
+        --specs: #ffd591;
+        --other: #d9d1ff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "Noto Sans TC", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 18% 14%, #1f3a5d 0%, rgba(31, 58, 93, 0) 42%),
+          radial-gradient(circle at 82% 78%, #1d4258 0%, rgba(29, 66, 88, 0) 46%),
+          linear-gradient(140deg, var(--bg-0), var(--bg-1));
+      }
+
+      #stage {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+
+      .header {
+        position: absolute;
+        left: 84px;
+        top: 72px;
+        z-index: 4;
+        opacity: 0;
+        animation: fade-up 900ms ease-out 200ms forwards;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 64px;
+        letter-spacing: 0.5px;
+      }
+
+      .header p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 30px;
+      }
+
+      .summary {
+        position: absolute;
+        right: 84px;
+        top: 76px;
+        width: 460px;
+        padding: 24px 28px;
+        border-radius: 16px;
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        backdrop-filter: blur(6px);
+        z-index: 4;
+        opacity: 0;
+        animation: fade-up 900ms ease-out 420ms forwards;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .summary-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .summary-item .value {
+        font-size: 35px;
+        font-weight: 700;
+      }
+
+      .summary-item .label {
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      #graph {
+        position: absolute;
+        left: 78px;
+        right: 78px;
+        top: 254px;
+        bottom: 78px;
+        border-radius: 22px;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        overflow: hidden;
+      }
+
+      #edges {
+        position: absolute;
+        inset: 0;
+      }
+
+      #nodes {
+        position: absolute;
+        inset: 0;
+      }
+
+      .node {
+        position: absolute;
+        width: 300px;
+        min-height: 98px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        background: rgba(8, 15, 24, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+        transform: translateY(22px);
+        opacity: 0;
+        animation: reveal 640ms ease-out forwards;
+      }
+
+      .node .name {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .node .path {
+        margin-top: 8px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .node.backend {
+        border-left: 4px solid var(--backend);
+      }
+
+      .node.frontend {
+        border-left: 4px solid var(--frontend);
+      }
+
+      .node.specs {
+        border-left: 4px solid var(--specs);
+      }
+
+      .node.other {
+        border-left: 4px solid var(--other);
+      }
+
+      .edge {
+        stroke: var(--line);
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-dasharray: 12 10;
+        animation: edge-flow 2.4s linear infinite;
+      }
+
+      .legend {
+        position: absolute;
+        left: 110px;
+        bottom: 96px;
+        display: flex;
+        gap: 18px;
+        z-index: 5;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+      }
+
+      @keyframes fade-up {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes reveal {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes edge-flow {
+        from {
+          stroke-dashoffset: 0;
+        }
+        to {
+          stroke-dashoffset: -44;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="stage"
+      data-composition-id="doc-erp-file-relations"
+      data-start="0"
+      data-duration="10"
+      data-width="1920"
+      data-height="1080"
+      data-fps="30"
+    >
+      <div class="header">
+        <h1>Doc ERP 檔案關係導覽</h1>
+        <p>自動掃描專案結構與 Python import 依賴</p>
+      </div>
+
+      <div class="summary">
+        <div class="summary-grid" id="summary-grid"></div>
+      </div>
+
+      <div id="graph">
+        <svg id="edges"></svg>
+        <div id="nodes"></div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item"><span class="dot" style="background:#7ec8ff"></span>backend</div>
+        <div class="legend-item"><span class="dot" style="background:#8de9c5"></span>frontend</div>
+        <div class="legend-item"><span class="dot" style="background:#ffd591"></span>specs</div>
+        <div class="legend-item"><span class="dot" style="background:#d9d1ff"></span>other</div>
+      </div>
+    </div>
+
+    <script src="./data/relations.js"></script>
+    <script>
+      const data = window.RELATION_DATA || { summary: {}, nodes: [], links: [] };
+
+      const summaryEntries = [
+        { label: "Nodes", value: data.summary.nodeCount || 0 },
+        { label: "Links", value: data.summary.linkCount || 0 },
+        { label: "Groups", value: data.summary.groupCount || 0 }
+      ];
+
+      const summaryGrid = document.getElementById("summary-grid");
+      summaryEntries.forEach((item) => {
+        const el = document.createElement("div");
+        el.className = "summary-item";
+        el.innerHTML = `<span class="value">${item.value}</span><span class="label">${item.label}</span>`;
+        summaryGrid.appendChild(el);
+      });
+
+      const nodesRoot = document.getElementById("nodes");
+      const edgesSvg = document.getElementById("edges");
+      const frame = document.getElementById("graph");
+      const frameRect = frame.getBoundingClientRect();
+
+      const maxNodes = 14;
+      const nodes = data.nodes.slice(0, maxNodes);
+      const columns = 4;
+      const spacingX = 330;
+      const spacingY = 146;
+      const startX = 42;
+      const startY = 40;
+      const placement = new Map();
+
+      nodes.forEach((node, idx) => {
+        const col = idx % columns;
+        const row = Math.floor(idx / columns);
+        const x = startX + col * spacingX;
+        const y = startY + row * spacingY;
+
+        const el = document.createElement("div");
+        el.className = `node ${node.group || "other"}`;
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.style.animationDelay = `${500 + idx * 90}ms`;
+        el.innerHTML = `<div class="name">${node.label}</div><div class="path">${node.path}</div>`;
+        nodesRoot.appendChild(el);
+
+        placement.set(node.id, {
+          x: x + 150,
+          y: y + 49
+        });
+      });
+
+      edgesSvg.setAttribute("width", String(frameRect.width));
+      edgesSvg.setAttribute("height", String(frameRect.height));
+      edgesSvg.setAttribute("viewBox", `0 0 ${frameRect.width} ${frameRect.height}`);
+
+      data.links.slice(0, 24).forEach((link) => {
+        const from = placement.get(link.source);
+        const to = placement.get(link.target);
+        if (!from || !to) {
+          return;
+        }
+
+        const dx = Math.abs(to.x - from.x) * 0.42;
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute(
+          "d",
+          `M ${from.x} ${from.y} C ${from.x + dx} ${from.y}, ${to.x - dx} ${to.y}, ${to.x} ${to.y}`
+        );
+        path.setAttribute("class", "edge");
+        edgesSvg.appendChild(path);
+      });
+    </script>
+  </body>
+</html>

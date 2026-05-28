@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doc ERP Impact Review Board</title>
+    <style>
+      :root {
+        --bg: #0d1320;
+        --panel: rgba(255, 255, 255, 0.06);
+        --line: rgba(255, 255, 255, 0.15);
+        --text: #ecf4ff;
+        --muted: #9eb3ca;
+        --changed: #5ec2ff;
+        --suspect-doc: #ffbc6e;
+        --suspect-para: #7be6b8;
+        --suspect-clause: #f2a6ff;
+        --suspect-check: #ffe880;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "Noto Sans TC", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 15% 15%, #243b5f 0%, rgba(36, 59, 95, 0) 42%),
+          radial-gradient(circle at 85% 75%, #264653 0%, rgba(38, 70, 83, 0) 45%),
+          var(--bg);
+      }
+
+      .page {
+        max-width: 1360px;
+        margin: 0 auto;
+        padding: 28px 28px 40px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 42px;
+      }
+
+      .sub {
+        margin-top: 8px;
+        color: var(--muted);
+      }
+
+      .summary {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(120px, 1fr));
+        gap: 12px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        border-radius: 12px;
+        padding: 14px 16px;
+      }
+
+      .card .label { color: var(--muted); font-size: 13px; }
+      .card .value { font-size: 30px; font-weight: 700; margin-top: 5px; }
+
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 13px;
+      }
+
+      .dot { width: 10px; height: 10px; border-radius: 999px; }
+
+      .board {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .item {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      .item .top {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .pill {
+        font-size: 12px;
+        border-radius: 999px;
+        padding: 4px 8px;
+        font-weight: 700;
+      }
+
+      .path {
+        color: var(--muted);
+        margin-top: 8px;
+        font-size: 12px;
+        word-break: break-all;
+      }
+
+      .nav {
+        margin-top: 8px;
+        border-top: 1px dashed var(--line);
+        padding-top: 8px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .hint {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 980px) {
+        .board { grid-template-columns: 1fr; }
+        .summary { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1>Impact Review Board</h1>
+      <div class="sub" id="meta">Loading...</div>
+
+      <div class="summary" id="summary"></div>
+
+      <div class="legend">
+        <span class="tag"><span class="dot" style="background: var(--changed)"></span>changed</span>
+        <span class="tag"><span class="dot" style="background: var(--suspect-doc)"></span>suspect_document</span>
+        <span class="tag"><span class="dot" style="background: var(--suspect-para)"></span>suspect_paragraph</span>
+        <span class="tag"><span class="dot" style="background: var(--suspect-clause)"></span>suspect_clause</span>
+        <span class="tag"><span class="dot" style="background: var(--suspect-check)"></span>suspect_checklist</span>
+      </div>
+
+      <div class="board" id="board"></div>
+      <div class="hint">每個項目顯示 from / to / returnTo，可直接作為雙向審查跳轉上下文。</div>
+    </div>
+
+    <script src="./data/impact-report.js"></script>
+    <script>
+      const report = window.IMPACT_REPORT || { summary: {}, items: [], input: {} };
+
+      const statusColor = {
+        changed: "var(--changed)",
+        suspect_document: "var(--suspect-doc)",
+        suspect_paragraph: "var(--suspect-para)",
+        suspect_clause: "var(--suspect-clause)",
+        suspect_checklist: "var(--suspect-check)",
+        suspect_trace: "#ff8f8f"
+      };
+
+      document.getElementById("meta").textContent =
+        `seedMode: ${report.input.seedMode || "n/a"} | depth: ${report.input.depth || "-"} | changedFiles: ${(report.input.changedFiles || []).length}`;
+
+      const summaryRoot = document.getElementById("summary");
+      [
+        ["Changed", report.summary.changedCount || 0],
+        ["Suspect", report.summary.suspectCount || 0],
+        ["Impacted", report.summary.totalImpacted || 0],
+        ["Seeds", report.input.seedCount || 0]
+      ].forEach(([label, value]) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<div class="label">${label}</div><div class="value">${value}</div>`;
+        summaryRoot.appendChild(card);
+      });
+
+      const board = document.getElementById("board");
+      report.items.forEach((item) => {
+        const color = statusColor[item.status] || "#ccc";
+        const el = document.createElement("div");
+        el.className = "item";
+        el.innerHTML = `
+          <div class="top">
+            <div>${item.label}</div>
+            <span class="pill" style="background:${color}; color:#102030">${item.status}</span>
+          </div>
+          <div class="path">${item.path}</div>
+          <div class="nav">
+            from: ${item.navigation?.from || "-"}<br />
+            to: ${item.navigation?.to || "-"}<br />
+            returnTo: ${item.navigation?.returnTo || "-"}
+          </div>
+        `;
+        board.appendChild(el);
+      });
+    </script>
+  </body>
+</html>

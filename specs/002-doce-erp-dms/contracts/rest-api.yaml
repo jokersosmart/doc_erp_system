@@ -1,0 +1,734 @@
+openapi: 3.1.0
+info:
+  title: DocERP Core Workflow API
+  version: 0.1.0
+  description: |
+    Contract-first API for document lifecycle, traceability impact, AI review,
+    and audit export workflows.
+servers:
+  - url: https://api.doc-erp.example.com/api/v1
+security:
+  - bearerAuth: []
+
+paths:
+  /documents/convert:
+    post:
+      summary: Convert uploaded office document to markdown
+      operationId: convertDocumentToMarkdown
+      tags: [Documents]
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Conversion completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarkdownConversionResponse'
+
+  /documents:
+    post:
+      summary: Create a document in DRAFT state
+      operationId: createDocument
+      tags: [Documents]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDocumentRequest'
+      responses:
+        '201':
+          description: Document created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentResponse'
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /documents/{documentId}:
+    get:
+      summary: Get document with dynamic attributes and revision metadata
+      operationId: getDocument
+      tags: [Documents]
+      parameters:
+        - $ref: '#/components/parameters/DocumentId'
+      responses:
+        '200':
+          description: Document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentResponse'
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      summary: Update DRAFT content with optimistic concurrency
+      operationId: updateDocument
+      tags: [Documents]
+      parameters:
+        - $ref: '#/components/parameters/DocumentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDocumentRequest'
+      responses:
+        '200':
+          description: Document updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentResponse'
+        '409':
+          description: Version conflict or immutable APPROVED revision
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /documents/{documentId}/transitions:
+    post:
+      summary: Request lifecycle transition
+      operationId: transitionDocument
+      tags: [Documents]
+      parameters:
+        - $ref: '#/components/parameters/DocumentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LifecycleTransitionRequest'
+      responses:
+        '200':
+          description: Transition accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentResponse'
+        '422':
+          description: Required attributes missing or invalid transition
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /traceability/links:
+    post:
+      summary: Create typed traceability link
+      operationId: createTraceabilityLink
+      tags: [Traceability]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTraceabilityLinkRequest'
+      responses:
+        '201':
+          description: Link created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceabilityLinkResponse'
+        '409':
+          description: Circular link or duplicate link
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /documents/{documentId}/impacts:
+    get:
+      summary: List impacted downstream documents
+      operationId: getImpactAnalysis
+      tags: [Traceability]
+      parameters:
+        - $ref: '#/components/parameters/DocumentId'
+      responses:
+        '200':
+          description: Impact analysis result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImpactAnalysisResponse'
+
+  /traceability/links/{linkId}/resolve:
+    post:
+      summary: Resolve SUSPECT dependency status
+      operationId: resolveSuspectLink
+      tags: [Traceability]
+      parameters:
+        - $ref: '#/components/parameters/LinkId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResolveSuspectRequest'
+      responses:
+        '200':
+          description: Resolution stored
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TraceabilityLinkResponse'
+        '422':
+          description: Invalid resolution payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /ai/reviews:
+    post:
+      summary: Submit AI compliance review request
+      operationId: createAIReview
+      tags: [AI]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAIReviewRequest'
+      responses:
+        '202':
+          description: Review job accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIReviewJobResponse'
+
+  /ai/reviews/{jobId}:
+    get:
+      summary: Get AI review job status and findings
+      operationId: getAIReview
+      tags: [AI]
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: Job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIReviewJobResponse'
+
+  /ai/reviews/{jobId}/suggestions/{suggestionId}/decisions:
+    post:
+      summary: Record accept/reject decision for AI suggestion
+      operationId: decideAISuggestion
+      tags: [AI]
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+        - name: suggestionId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestionDecisionRequest'
+      responses:
+        '200':
+          description: Decision recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestionDecisionResponse'
+        '422':
+          description: Invalid decision
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /exports:
+    post:
+      summary: Submit structured export job
+      operationId: createExport
+      tags: [Export]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExportRequest'
+      responses:
+        '202':
+          description: Export job accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJobResponse'
+
+  /exports/{jobId}:
+    get:
+      summary: Get export job status and validation report
+      operationId: getExport
+      tags: [Export]
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: Export job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJobResponse'
+
+  /dashboard/summary:
+    get:
+      summary: Get operational dashboard metrics
+      operationId: getDashboardSummary
+      tags: [Dashboard]
+      responses:
+        '200':
+          description: Summary counters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardSummaryResponse'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    DocumentId:
+      name: documentId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    LinkId:
+      name: linkId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    JobId:
+      name: jobId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+
+  schemas:
+    LifecycleState:
+      type: string
+      enum: [DRAFT, REVIEW, APPROVED, OBSOLETE]
+
+    DependencyRelationshipType:
+      type: string
+      enum: [BLOCKING, BLOCKED_BY, RELATED]
+
+    DependencyHealthStatus:
+      type: string
+      enum: [HEALTHY, SUSPECT, RESOLVED]
+
+    JobStatus:
+      type: string
+      enum: [QUEUED, RUNNING, PARTIAL, COMPLETED, FAILED, RETRYABLE]
+
+    DynamicAttributeValue:
+      type: object
+      required: [attribute_key]
+      properties:
+        attribute_key:
+          type: string
+        value_string:
+          type: string
+          nullable: true
+        value_integer:
+          type: integer
+          nullable: true
+        value_boolean:
+          type: boolean
+          nullable: true
+        value_date:
+          type: string
+          format: date
+          nullable: true
+
+    CreateDocumentRequest:
+      type: object
+      required: [project_id, owner_id, partition_id, title, standards_scope]
+      properties:
+        project_id:
+          type: string
+          format: uuid
+        owner_id:
+          type: string
+          format: uuid
+        partition_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          maxLength: 500
+        content_markdown:
+          type: string
+          default: ""
+        standards_scope:
+          type: array
+          items:
+            type: string
+
+    UpdateDocumentRequest:
+      type: object
+      required: [expected_version, content_markdown]
+      properties:
+        expected_version:
+          type: integer
+          minimum: 1
+        content_markdown:
+          type: string
+        commit_message:
+          type: string
+
+    LifecycleTransitionRequest:
+      type: object
+      required: [to_state]
+      properties:
+        to_state:
+          $ref: '#/components/schemas/LifecycleState'
+        rationale:
+          type: string
+
+    DocumentResponse:
+      type: object
+      required: [id, title, lifecycle_state, current_version, project_id]
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        owner_id:
+          type: string
+          format: uuid
+          nullable: true
+        partition_id:
+          type: string
+          format: uuid
+          nullable: true
+        title:
+          type: string
+        content_markdown:
+          type: string
+        lifecycle_state:
+          $ref: '#/components/schemas/LifecycleState'
+        current_version:
+          type: integer
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DynamicAttributeValue'
+        updated_at:
+          type: string
+          format: date-time
+
+    MarkdownConversionResponse:
+      type: object
+      required: [markdown]
+      properties:
+        source_filename:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        markdown:
+          type: string
+
+    CreateTraceabilityLinkRequest:
+      type: object
+      required: [source_item_id, target_item_id, relationship_type]
+      properties:
+        source_item_id:
+          type: string
+          format: uuid
+        target_item_id:
+          type: string
+          format: uuid
+        relationship_type:
+          $ref: '#/components/schemas/DependencyRelationshipType'
+
+    TraceabilityLinkResponse:
+      type: object
+      required: [id, source_item_id, target_item_id, relationship_type, health_status]
+      properties:
+        id:
+          type: string
+          format: uuid
+        source_item_id:
+          type: string
+          format: uuid
+        target_item_id:
+          type: string
+          format: uuid
+        relationship_type:
+          $ref: '#/components/schemas/DependencyRelationshipType'
+        health_status:
+          $ref: '#/components/schemas/DependencyHealthStatus'
+        last_upstream_revision:
+          type: integer
+          nullable: true
+        suspect_since:
+          type: string
+          format: date-time
+          nullable: true
+
+    ImpactedDocument:
+      type: object
+      required: [document_id, title, health_status]
+      properties:
+        document_id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        owner_id:
+          type: string
+          format: uuid
+          nullable: true
+        health_status:
+          $ref: '#/components/schemas/DependencyHealthStatus'
+        current_resolution:
+          type: string
+          nullable: true
+
+    ImpactAnalysisResponse:
+      type: object
+      required: [upstream_document_id, impacted_documents]
+      properties:
+        upstream_document_id:
+          type: string
+          format: uuid
+        upstream_version:
+          type: integer
+        impacted_documents:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImpactedDocument'
+
+    ResolveSuspectRequest:
+      type: object
+      required: [resolution_type]
+      properties:
+        resolution_type:
+          type: string
+          enum: [UPDATED, NOT_IMPACTED, PENDING]
+        rationale:
+          type: string
+
+    CreateAIReviewRequest:
+      type: object
+      required: [document_id, revision_id, standards]
+      properties:
+        document_id:
+          type: string
+          format: uuid
+        revision_id:
+          type: string
+          format: uuid
+        standards:
+          type: array
+          items:
+            type: string
+
+    AIReviewFinding:
+      type: object
+      required: [id, severity, finding_text]
+      properties:
+        id:
+          type: string
+          format: uuid
+        clause_key:
+          type: string
+          nullable: true
+        severity:
+          type: string
+          enum: [INFO, WARNING, MAJOR]
+        finding_text:
+          type: string
+        suggestion_before:
+          type: string
+          nullable: true
+        suggestion_after:
+          type: string
+          nullable: true
+
+    AIReviewJobResponse:
+      type: object
+      required: [id, document_id, revision_id, status]
+      properties:
+        id:
+          type: string
+          format: uuid
+        document_id:
+          type: string
+          format: uuid
+        revision_id:
+          type: string
+          format: uuid
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        accepted_at:
+          type: string
+          format: date-time
+          nullable: true
+        first_result_at:
+          type: string
+          format: date-time
+          nullable: true
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        findings:
+          type: array
+          items:
+            $ref: '#/components/schemas/AIReviewFinding'
+        error_message:
+          type: string
+          nullable: true
+
+    SuggestionDecisionRequest:
+      type: object
+      required: [decision]
+      properties:
+        decision:
+          type: string
+          enum: [ACCEPTED, REJECTED]
+        rationale:
+          type: string
+
+    SuggestionDecisionResponse:
+      type: object
+      required: [suggestion_id, decision, decided_at]
+      properties:
+        suggestion_id:
+          type: string
+          format: uuid
+        decision:
+          type: string
+          enum: [ACCEPTED, REJECTED]
+        rationale:
+          type: string
+          nullable: true
+        decided_at:
+          type: string
+          format: date-time
+
+    CreateExportRequest:
+      type: object
+      required: [project_id, mapping_profile]
+      properties:
+        project_id:
+          type: string
+          format: uuid
+        mapping_profile:
+          type: string
+
+    ExportIssue:
+      type: object
+      required: [issue_code, severity, message]
+      properties:
+        issue_code:
+          type: string
+        severity:
+          type: string
+          enum: [ERROR, WARNING]
+        entity_ref:
+          type: string
+          nullable: true
+        message:
+          type: string
+
+    ExportJobResponse:
+      type: object
+      required: [id, project_id, status]
+      properties:
+        id:
+          type: string
+          format: uuid
+        project_id:
+          type: string
+          format: uuid
+        mapping_profile:
+          type: string
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        requested_at:
+          type: string
+          format: date-time
+          nullable: true
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        artifact_count:
+          type: integer
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExportIssue'
+
+    DashboardSummaryResponse:
+      type: object
+      required:
+        [open_suspect_count, pending_review_count, compliance_gap_count, export_ready_count]
+      properties:
+        open_suspect_count:
+          type: integer
+        pending_review_count:
+          type: integer
+        compliance_gap_count:
+          type: integer
+        export_ready_count:
+          type: integer
+
+    ErrorResponse:
+      type: object
+      required: [code, detail]
+      properties:
+        code:
+          type: string
+        detail:
+          type: string
+        request_id:
+          type: string
+          nullable: true

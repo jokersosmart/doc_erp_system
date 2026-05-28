@@ -1,0 +1,184 @@
+excel_row,type_column,type_value,title_column,title,body_column,body
+4,B,Information,C,Document Header,M,"Hardware Requirement and Design Specification
+
+[Project Name]
+
+**Revision History**
+
+* 在此文件中有任何變動，文件撰寫者須進行小版次[y]的進版，並在說明欄位填寫與前一版之差異。
+
+Any adjustment in this document, editor should update the version of [y] and clarify the difference between previous version.
+
+* 大版號[x]之變動，由CM經理依據基準完成後進行調整。說明欄位須將此基準審查JIRA單號列入。
+
+The version of [x] adjustment, CM manager should adjust after baseline process is completed, should fill out the JIRA No. into the description column.
+
+* 視需求，可自行增加欄位
+
+Extend, as necessary.
+
+| Revision | Date | Description | Author |
+| --- | --- | --- | --- |
+| [x.y] | YYYY/MM/DD | Detail change information | Name |
+|  |  |  |  |
+
+|  |
+| --- |
+| * **[綠色]中的句子表示不屬於目前交付的可交付成果，需填入實際成果名稱**   **The sentences in [Green] represent the deliverables that are not part of current delivery. Should fill out the actual deliverables.** |
+| * **使用您的專案資料完成本文內容**   **Complete below all contents with your project information** |
+| * **內文請用英文撰寫為主**   **Please write the main text primarily in English.** |
+| * **刪除空白表格與欄位**   **Delete empty tables** |
+| * **完成時，須把所有文字轉成黑體並刪除所有以項目符號開頭的綠色說明**   **Upon completion, all text must be converted to bold, and all green bullet-pointed notes must be deleted.** |"
+5,B,Information,C,Introduction,M,"Please fill in the official name and number of the project. If the project number is not applicable, please fill in ""N/A"". / 請填寫專案的正式名稱與編號。若專案編號不適用，請填寫 ""N/A""。
+
+* 此章節內的資訊將依照表格內容填入實際的資料。
+
+The information in this section will be filled in with actual data based on the content of the table."
+6,B,Information,C,Objective,M,"Describe the purpose, scope, and intended audience of this document. State that this document serves as the basis for hardware requirements, design specifications, safety requirements, and cybersecurity requirements. / 描述本文件的目的、範圍和預期讀者。說明本文件是作為硬體需求、設計規範、安全要求及網路安全要求規格的依據。
+
+文件流向須可追溯：RD-03-005 TARA → RD-03-103 System Requirement Management → 系統層級工作產出 → RD-03-010 硬體文件集。
+
+The document flow shall be traceable from RD-03-005 TARA to RD-03-103 System Requirement Management, then to system work products and this RD-03-010 hardware document set.
+
+安全與網路安全硬體需求由高階 SR、TSR、TARA 與網路安全目標推導，並決定元件層級之安全/網路安全目標。
+
+The safety and cybersecurity hardware requirements are derived from high-level SR, TSR, TARA, and cybersecurity goals, and determine the safety/security goals at the component level.
+
+The safety hardware requirements are derived from high level SR, TSR and determine the safety goal at component level. The hardware requirement and design is for IC design should include hardware architecture, basic design spec, HSR spec., HSI spec., and safety mechanisms.
+
+The starting point is to perform basic design on the hardware level based on the system block diagram defined in the system design. In the hardware-level design, the hardware part classifies during the system design is developed into a function-level architecture diagram to create a hardware circuit diagram that meets technical safety requirements.
+
+The hardware requirements have to be specified based on the hardware design and the technical safety requirements. The hardware requirements can be derived using analytic methods (e.g. FMEA).
+
+In the hardware design result the hardware safety requirements which implementation the planned safety mechanisms."
+7,B,Information,C,Product Overview,M,"Briefly introduce the product's overall function, application scenario, main components, and its role within the system. / 簡要介紹產品的整體功能、應用場景、主要組成部分以及其在系統中的角色。
+
+|  |  |
+| --- | --- |
+| **Project Name:** |  |
+| **Project Number:** |  |
+| **ASIL Level** |  |"
+8,B,Information,C,Abbreviation and Definition,M,"List all abbreviations (e.g., ECU, HSR, HSI, ASIL) and their full definitions used in this document. / 列出本文件中使用的所有縮寫詞（如 ECU, HSR, HSI, ASIL 等）及其完整定義。
+
+|  |  |  |
+| --- | --- | --- |
+| **No.** | **Term** | **Abbreviations** |
+| 1 |  |  |
+| 2 |  |  |
+| 3 |  |  |
+| 4 |  |  |
+| 5 | Cybersecurity Assurance Level | CAL |
+| 6 | Cybersecurity Control | CC |
+| 7 | Differential Power Analysis | DPA |
+| 8 | Electromagnetic Analysis | EM |
+| 9 | Hardware Cybersecurity Requirement | HCR |
+| 10 | Product Security Manager | PSM |
+| 11 | Simple Power Analysis | SPA |
+| 12 | Threat Analysis and Risk Assessment | TARA |
+| 13 | Fault Detection Time Interval | FDTI |
+| 14 | Fault Reaction Time Interval | FRTI |
+| 15 | Fault Tolerant Time Interval | FTTI |"
+9,B,Information,C,Associated Project Documents,M,"List all reference documents related to this document, including system requirement specifications, safety requirement specifications, software requirement specifications, etc., and specify their document number and version. / 列出與本文件相關的所有參考文件，包括系統需求規範、安全需求規範、軟體需求規範等，並註明文件編號和版本。
+
+|  |  |  |
+| --- | --- | --- |
+| **No.** | **Work Product ID** | **Work Product Name** |
+| 1 | [fill out the WP ID which is defined by CM] | [WP NAME] |
+|  |  | Product safety Plan |
+| 2 |  | System Requirement Specification |
+| 3 |  | System Architecture Specification |
+| 4 |  | Hardware Software Interface List |
+| 5 |  | DFMEA Report |
+| 6 |  | FMEDA Report |
+| 7 |  | DFA Report |
+| 8 | RD-03-010-11 | RTL Coding Guideline |
+| 9 | RD-03-005 | Treat Analysis and Risk Assessment (TARA) Instruction |
+| 10 | RD-03-103 | System Requirement Management Instruction |"
+10,B,Information,C,Documentation Standards and Controls,M,"Explain the standards and processes followed for the writing, review, version control, and change management of this document. / 說明本文件的編寫、審核、版本控制和變更管理所遵循的標準和流程。
+
+* 須將有引用之公司層級的定義文件列入此內容，包含條文規定。
+
+The referenced company-level definition documents must be included in this content, including regulatory provisions.
+
+|  |  |  |  |
+| --- | --- | --- | --- |
+| **No.** | **Document ID** | **Document Name** | **Version** |
+| 1 | [fill out the DCC ID] | [DCC Document Name] | [The version in DCC] |
+| 2 |  |  |  |
+| 3 |  |  |  |
+|  | ISO/SAE 21434:2021 | Road vehicles — Cybersecurity engineering | 2021 |"
+11,B,Information,C,Hardware Safety requirement specifications,M,"Outline the source, derivation process, and final specifications of the hardware safety requirements. / 概述硬體安全需求的來源、推導過程和最終規格。"
+12,B,Information,C,Safety goal at component level,M,"Derive and define the Safety Goals at the hardware component level based on the system-level Functional Safety Goals and Technical Safety Requirements (TSR), and specify their ASIL level. / 根據系統層級的功能安全目標（Safety Goal）和技術安全需求（TSR），推導並定義本硬體元件層級的安全目標，並註明其 ASIL 等級。
+
+* 此章節將描述系統安全需求延伸出的硬件要素層級安全目標,並需要可以朔源至系統安全需求。
+  This section will present the hardware element–level safety goals extended from the system safety requirements and ensure they are traceable to the original requirements.
+
+| SG-ID | Requirement | ASIL | Source |
+| --- | --- | --- | --- |
+| [SG-ID] | [fill out the requirement] | [A, B, C or D] | [fill out the related TSR ID] |
+| SG-01 | Corrupt Data | B | TSR5 |"
+13,B,Information,C,Hardware safety requirement specifications,M,"Explain the overall structure, numbering rules, and traceability (should trace back to TSR or Safety Goal) of the Hardware Safety Requirements (HSR). / 說明硬體安全需求（HSR）的整體結構、編號規則和追溯關係（應追溯至 TSR 或安全目標）。
+
+* 此章節將依照該專案的TSR設計出HSR並做詳細描述。
+
+This section will design the HSR based on the project's TSR and provide a detailed description.
+
+![](data:image/png;base64...) The requirement notation methods is as below table, refer to ISO26262. [Project Name]’s Target ASIL is [fill out ASIL level], [Project name] is follow [fill out the 1a, 1b or 1c] to complete the hardware safety requirement section as below summary HSR table.
+
+Table definition is as below, please delete this section when the below table is completed.
+
+|  |
+| --- |
+| The content shall include the following details for each HSR:  ID : Identity document of HSR e.g. HSR1.1 If the requirement is for latent failure e.g. HSR 1.1 Latent  Requirement: A description of the requirement, including details about the safety mechanism.  ASIL: The target ASIL level for the requirement.  Source: The TSRs from which the HSRs were derived after being allocated to hardware.  Status:   1. Proposed: The requirement has been submitted but not yet reviewed. 2. Reviewing: The requirement is currently under evaluation for feasibility or validity. 3. Accepted: The requirement has been approved and will proceed to implementation. 4. Rejected: The requirement has been reviewed and determined not to be suitable or necessary. |
+
+| HSR-ID | Requirement | ASIL | Source | Status |
+| --- | --- | --- | --- | --- |
+| [HSR-ID] | [fill out the requirement] | [A, B, C or D] | [fill out the related TSR ID] | [Proposed/ Reviewing/ Accepted/ Rejected] |
+| HSR1 | Hardware shall implement ECC to meet SECDED | B | TSR1 | Proposed |
+
+Based on the summary HSR table, the detailed HW safety requirement specifications will be listed separately."
+14,B,Information,C,[<HSR ID>],M,"Placeholder section: Please fill in the specific HSR ID here (e.g., HSR\_001). Each HSR should include a unique ID, clear description, ASIL level, verification method, etc. / 範例章節：請在此處填寫具體的 HSR ID（例如 HSR\_001）。每個 HSR 應包含唯一的 ID、清晰的描述、ASIL 等級、驗證方法等。
+
+|  |  |
+| --- | --- |
+| **ID** | Unique identification Identity document of HSR |
+| **Safety requirement** | Description of requirement. |
+| **Source TSR** | Fill out the related TSR ID |
+| **ASIL** | The target ASIL level for the requirement. |
+| **Safe State** | How to Enter Safe State  (If applicable, please refer to the following options.)   1. Fault Detection Condition 2. Detection Mechanism 3. Trigger Signal   Actions in the Safe State  (If applicable, please refer to the following options.)   1. Error Logging 2. Indication Signals 3. System Limitations 4. Data Backup   How to Exit Safe State  (If applicable, please refer to the following options.)   1. Clearing Conditions 2. Record Retention 3. Recovery Steps |"
+15,B,Information,C,HSR1,M,"Fill in the detailed specification for the first Hardware Safety Requirement (HSR). / 填寫第一個硬體安全需求（HSR）的詳細規格。
+
+|  |  |
+| --- | --- |
+| **ID** | HSR1 |
+| **Safety requirement** | * The HSR is designed to prevent bit-flips in host data, firmware tables, and operation codes stored in SRAM. This mechanism addresses specific IC-SGV issues, including Corrupt Data, Wrong Data, and Stale Data. * Apply ECC. * Support SECDED capability. |
+| **Source TSR** | TSR1 |
+| **ASIL** | B |
+| **Safe State** | After detecting an SRAM bit-flip, the hardware sends an interrupt to notify the firmware.  The firmware will log a history of detected SRAM errors.  If ECC is unable to recover the data, the firmware will send an AER (Advanced Error Reporting) to notify the host. |"
+16,B,Information,C,HSR2,M,"Fill in the detailed specification for the second Hardware Safety Requirement (HSR). / 填寫第二個硬體安全需求（HSR）的詳細規格。
+
+|  |  |
+| --- | --- |
+| **ID** | HSR2 |
+| **Safety requirement** | FDTI <= 1us  FRTI <= 1ms  FTTI <= 1.5ms ![](data:image/png;base64...) |
+| **Source TSR** | TSR2 |
+| **ASIL** | B |
+| **Safe State** | N/A |"
+17,B,Information,C,HSR3,M,"Fill in the detailed specification for the third Hardware Safety Requirement (HSR). / 填寫第三個硬體安全需求（HSR）的詳細規格。
+
+|  |  |
+| --- | --- |
+| **ID** | HSR3 |
+| **Safety requirement** | Single-Point Fault Metric (SPFM) shall be at least 90% |
+| **Source TSR** | TSR3 |
+| **ASIL** | B |
+| **Safe State** | N/A |"
+18,B,Information,C,HSR4,M,"Fill in the detailed specification for the fourth Hardware Safety Requirement (HSR). / 填寫第四個硬體安全需求（HSR）的詳細規格。
+
+|  |  |
+| --- | --- |
+| **ID** | HSR4 |
+| **Safety requirement** | Single-Point Fault Metric (LFM) shall be at least 60% |
+| **Source TSR** | TSR4 |
+| **ASIL** | B |
+| **Safe State** | N/A |"

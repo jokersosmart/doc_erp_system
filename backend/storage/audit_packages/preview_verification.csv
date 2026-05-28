@@ -1,0 +1,32 @@
+excel_row,type_column,type_value,title_column,title,body_column,body
+4,B,Information,C,Hardware design verification,V,"本文件範圍涵蓋硬體需求規格制定與硬體設計，不包含驗證活動的執行與記錄；驗證活動由驗證團隊管理，並記錄於 RD-03-010-03 硬體測試計畫書與 RD-03-010-05 硬體測試案例。
+
+The scope of this document covers hardware requirement specification and hardware design only. Verification activities and execution records are managed by the verification team and documented in RD-03-010-03 Hardware Test Plan and RD-03-010-05 Hardware Test Cases.
+
+Describe the hardware design verification activities to demonstrate that the design satisfies all requirements (functional and safety). / 描述硬體設計的驗證活動，以證明設計滿足所有需求（功能性與安全性）。"
+5,B,Information,C,Cybersecurity verification,V,"HCR 追溯鏈格式與驗證方法選擇依據，請參考 RD-03-010 硬體開發與測試規範 Section 6.2 及 Section 6.4。
+
+HCR traceability chain format and verification method selection shall follow RD-03-010 Hardware Development and Test Instruction Sections 6.2 and 6.4.
+
+此節提供每條 HCR 對應的驗證方式、測試案例 ID、工具環境、通過準則及 TARA 殘餘風險引用。
+
+This section provides the verification method, test case ID, tooling, pass criterion, and TARA residual risk reference for each HCR.
+
+若 HCR 或 TARA 指出 DPA、SPA、side-channel、fault injection 或 debug/test interface 風險適用，驗證計畫應明確列出分析/測試方法、樣品與量測條件、工具或第三方實驗室、通過準則，以及無法測試時的替代證據與理由。
+
+If an HCR or TARA indicates that DPA, SPA, side-channel, fault injection, or debug/test interface risks are applicable, the verification plan shall explicitly list the analysis/test method, sample and measurement conditions, tools or third-party laboratory, pass criteria, and alternative evidence with rationale when direct testing is not feasible.
+
+|  |  |  |  |
+| --- | --- | --- | --- |
+| **Attack / concern** | **Applicability trigger** | **Expected design evidence** | **Expected verification evidence** |
+| DPA / SPA / side-channel leakage | Secret-dependent power/EM/timing behavior, cryptographic operation, key storage or secure boot path | HCR/CC mapping, countermeasure rationale, protected asset boundary | Analysis/test plan, pass criterion, measurement report or documented non-applicability rationale |
+| Fault injection / glitch | Security decision, boot/authentication flow, OTP/eFuse read, privilege transition | Fault response behavior, safe/secure state, error logging or lockout behavior | Injection/negative test case or analysis evidence with residual risk reference |
+| Debug/test interface abuse | JTAG/TAP, scan chain, test mode, manufacturing access path | Access control, lock state, lifecycle state, production-mode restriction | Access attempt test, register/status evidence, manufacturing control evidence |
+|  |  |  |  |
+
+|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| HCR-ID | 驗證方式 Verification method | 測試案例 ID Test Case ID (RD-03-010-05) | 工具 / 環境 Tools / environment | 通過準則 Pass criterion | TARA 殘餘風險引用 TARA residual risk ref. |
+| HCR-001 | 暫存器檢查 + 測試 Register inspection + test | [HW-TC-Cy-001] | [fill] | No plaintext key on any bus or debug interface 任何匯流排或除錯介面均不得出現明文金鑰 | [TARA Rev. x.y, RT-xx] |
+| HCR-002 | 測試（注入竄改映像）Test (inject tampered image) | [HW-TC-Cy-002] | [fill] | Boot halted; tamper event logged 開機停止；竄改事件已記錄 | [TARA Rev. x.y, RT-xx] |
+| HCR-003 | 測試（JTAG 存取嘗試）Test (JTAG access attempt) | [HW-TC-Cy-003] | [fill] | JTAG access denied; DBG\_LOCK confirms locked JTAG 存取被拒；DBG\_LOCK 確認已鎖定 | [TARA Rev. x.y, RT-xx] |"

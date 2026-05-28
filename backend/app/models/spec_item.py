@@ -20,6 +20,12 @@ class DependencyRelationshipType(str, enum.Enum):
     RELATED = "RELATED"
 
 
+class DependencyHealthState(str, enum.Enum):
+    HEALTHY = "HEALTHY"
+    SUSPECT = "SUSPECT"
+    RESOLVED = "RESOLVED"
+
+
 class SpecItem(Base):
     __tablename__ = "spec_items"
     __table_args__ = (Index("ix_spec_items_document_id", "document_id"),)
@@ -56,6 +62,8 @@ class DependencyLink(Base):
         Index("ix_dep_links_source_item_id", "source_item_id"),
         Index("ix_dep_links_target_item_id", "target_item_id"),
         Index("ix_dep_links_relationship_type", "relationship_type"),
+        Index("ix_dep_links_target_health_state", "target_item_id", "health_state"),
+        Index("ix_dep_links_source_health_state", "source_item_id", "health_state"),
         UniqueConstraint(
             "source_item_id", "target_item_id", "relationship_type", name="uq_dep_link"
         ),
@@ -71,6 +79,14 @@ class DependencyLink(Base):
     relationship_type: Mapped[DependencyRelationshipType] = mapped_column(
         Enum(DependencyRelationshipType), nullable=False
     )
+    health_state: Mapped[DependencyHealthState] = mapped_column(
+        Enum(DependencyHealthState), nullable=False, default=DependencyHealthState.HEALTHY
+    )
+    suspect_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+    last_health_transition_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    last_health_transition_by: Mapped[uuid.UUID | None] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("users.id"), nullable=True
+    )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     source_item: Mapped[SpecItem] = relationship(
@@ -78,4 +94,9 @@ class DependencyLink(Base):
     )
     target_item: Mapped[SpecItem] = relationship(
         "SpecItem", foreign_keys=[target_item_id], back_populates="incoming_links"
+    )
+    suspect_resolutions: Mapped[list["SuspectResolution"]] = relationship(
+        "SuspectResolution",
+        back_populates="dependency_link",
+        cascade="all, delete-orphan",
     )

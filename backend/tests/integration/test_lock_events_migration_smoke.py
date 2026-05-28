@@ -5,6 +5,8 @@ from pathlib import Path
 from types import ModuleType
 from typing import Any
 
+import sqlalchemy as sa
+
 
 def _load_migration_module() -> ModuleType:
     migration_path = (
@@ -21,7 +23,10 @@ def _load_migration_module() -> ModuleType:
     return module
 
 
-class _DummyEnum:
+class _DummyEnum(sa.String):
+    def __init__(self) -> None:
+        super().__init__()
+
     def create(self, *_args: Any, **_kwargs: Any) -> None:
         return
 

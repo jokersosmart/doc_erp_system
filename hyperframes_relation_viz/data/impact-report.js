@@ -1,0 +1,1399 @@
+window.IMPACT_REPORT = {
+  "generatedAt": "2026-05-25T10:31:17.180Z",
+  "input": {
+    "changedFiles": [
+      ".github/copilot-instructions.md",
+      ".vscode/settings.json",
+      "backend/app/main.py",
+      "backend/app/models/__init__.py",
+      "backend/app/models/document.py",
+      "backend/app/models/spec_item.py",
+      "backend/migrations/env.py",
+      "backend/pyproject.toml",
+      "backend/tests/integration/test_lock_events_migration_smoke.py"
+    ],
+    "depth": 2,
+    "seedCount": 6,
+    "seedMode": "git-hunk-paragraph-aware"
+  },
+  "summary": {
+    "totalImpacted": 64,
+    "suspectCount": 58,
+    "changedCount": 6
+  },
+  "items": [
+    {
+      "id": "backend/app/main.py",
+      "label": "main.py",
+      "path": "backend/app/main.py",
+      "type": "document",
+      "distance": 0,
+      "status": "changed",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/main.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [],
+        "pathIds": [
+          "backend/app/main.py"
+        ]
+      },
+      "reason": "Directly changed in current diff"
+    },
+    {
+      "id": "backend/app/models/__init__.py",
+      "label": "__init__.py",
+      "path": "backend/app/models/__init__.py",
+      "type": "document",
+      "distance": 0,
+      "status": "changed",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/__init__.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [],
+        "pathIds": [
+          "backend/app/models/__init__.py"
+        ]
+      },
+      "reason": "Directly changed in current diff"
+    },
+    {
+      "id": "backend/app/models/document.py",
+      "label": "document.py",
+      "path": "backend/app/models/document.py",
+      "type": "document",
+      "distance": 0,
+      "status": "changed",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/app/models/document.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [],
+        "pathIds": [
+          "backend/app/models/document.py"
+        ]
+      },
+      "reason": "Directly changed in current diff"
+    },
+    {
+      "id": "backend/app/models/spec_item.py",
+      "label": "spec_item.py",
+      "path": "backend/app/models/spec_item.py",
+      "type": "document",
+      "distance": 0,
+      "status": "changed",
+      "navigation": {
+        "from": "backend/app/models/spec_item.py",
+        "to": "backend/app/models/spec_item.py",
+        "returnTo": "backend/app/models/spec_item.py",
+        "hops": [],
+        "pathIds": [
+          "backend/app/models/spec_item.py"
+        ]
+      },
+      "reason": "Directly changed in current diff"
+    },
+    {
+      "id": "backend/migrations/env.py",
+      "label": "env.py",
+      "path": "backend/migrations/env.py",
+      "type": "document",
+      "distance": 0,
+      "status": "changed",
+      "navigation": {
+        "from": "backend/migrations/env.py",
+        "to": "backend/migrations/env.py",
+        "returnTo": "backend/migrations/env.py",
+        "hops": [],
+        "pathIds": [
+          "backend/migrations/env.py"
+        ]
+      },
+      "reason": "Directly changed in current diff"
+    },
+    {
+      "id": "backend/tests/integration/test_lock_events_migration_smoke.py",
+      "label": "test_lock_events_migration_smoke.py",
+      "path": "backend/tests/integration/test_lock_events_migration_smoke.py",
+      "type": "document",
+      "distance": 0,
+      "status": "changed",
+      "navigation": {
+        "from": "backend/tests/integration/test_lock_events_migration_smoke.py",
+        "to": "backend/tests/integration/test_lock_events_migration_smoke.py",
+        "returnTo": "backend/tests/integration/test_lock_events_migration_smoke.py",
+        "hops": [],
+        "pathIds": [
+          "backend/tests/integration/test_lock_events_migration_smoke.py"
+        ]
+      },
+      "reason": "Directly changed in current diff"
+    },
+    {
+      "id": "backend/app/api/router.py",
+      "label": "router.py",
+      "path": "backend/app/api/router.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/api/router.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "router.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/api/router.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/core/config.py",
+      "label": "config.py",
+      "path": "backend/app/core/config.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/core/config.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "config.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/core/config.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/core/database.py",
+      "label": "database.py",
+      "path": "backend/app/core/database.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/app/core/database.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "database.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/core/database.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/core/errors.py",
+      "label": "errors.py",
+      "path": "backend/app/core/errors.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/core/errors.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "errors.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/core/errors.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/ai_review.py",
+      "label": "ai_review.py",
+      "path": "backend/app/models/ai_review.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/ai_review.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "ai_review.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/ai_review.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/attribute_definition.py",
+      "label": "attribute_definition.py",
+      "path": "backend/app/models/attribute_definition.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/attribute_definition.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "attribute_definition.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/attribute_definition.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/audit_event.py",
+      "label": "audit_event.py",
+      "path": "backend/app/models/audit_event.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/audit_event.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "audit_event.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/audit_event.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/compliance.py",
+      "label": "compliance.py",
+      "path": "backend/app/models/compliance.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/compliance.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "compliance.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/compliance.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/document_revision.py",
+      "label": "document_revision.py",
+      "path": "backend/app/models/document_revision.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/document_revision.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "document_revision.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/document_revision.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/export_job.py",
+      "label": "export_job.py",
+      "path": "backend/app/models/export_job.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/export_job.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "export_job.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/export_job.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/lock_event.py",
+      "label": "lock_event.py",
+      "path": "backend/app/models/lock_event.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/lock_event.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "lock_event.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/lock_event.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/notification.py",
+      "label": "notification.py",
+      "path": "backend/app/models/notification.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/notification.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "notification.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/notification.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/org.py",
+      "label": "org.py",
+      "path": "backend/app/models/org.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/org.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "org.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/org.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/standard.py",
+      "label": "standard.py",
+      "path": "backend/app/models/standard.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/standard.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "standard.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/standard.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/models/suspect_resolution.py",
+      "label": "suspect_resolution.py",
+      "path": "backend/app/models/suspect_resolution.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/models/suspect_resolution.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "suspect_resolution.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/suspect_resolution.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/schemas/documents.py",
+      "label": "documents.py",
+      "path": "backend/app/schemas/documents.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/app/schemas/documents.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "documents.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/schemas/documents.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/schemas/imports.py",
+      "label": "imports.py",
+      "path": "backend/app/schemas/imports.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/spec_item.py",
+        "to": "backend/app/schemas/imports.py",
+        "returnTo": "backend/app/models/spec_item.py",
+        "hops": [
+          "imports.py"
+        ],
+        "pathIds": [
+          "backend/app/models/spec_item.py",
+          "backend/app/schemas/imports.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/schemas/traceability.py",
+      "label": "traceability.py",
+      "path": "backend/app/schemas/traceability.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/spec_item.py",
+        "to": "backend/app/schemas/traceability.py",
+        "returnTo": "backend/app/models/spec_item.py",
+        "hops": [
+          "traceability.py"
+        ],
+        "pathIds": [
+          "backend/app/models/spec_item.py",
+          "backend/app/schemas/traceability.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/attribute_validation_service.py",
+      "label": "attribute_validation_service.py",
+      "path": "backend/app/services/attribute_validation_service.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/app/services/attribute_validation_service.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "attribute_validation_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/services/attribute_validation_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/dashboard_service.py",
+      "label": "dashboard_service.py",
+      "path": "backend/app/services/dashboard_service.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/app/services/dashboard_service.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "dashboard_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/services/dashboard_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/dependency_engine.py",
+      "label": "dependency_engine.py",
+      "path": "backend/app/services/dependency_engine.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/app/services/dependency_engine.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "dependency_engine.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/services/dependency_engine.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/document_lifecycle_service.py",
+      "label": "document_lifecycle_service.py",
+      "path": "backend/app/services/document_lifecycle_service.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/app/services/document_lifecycle_service.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "document_lifecycle_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/services/document_lifecycle_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/narwhal_import_service.py",
+      "label": "narwhal_import_service.py",
+      "path": "backend/app/services/narwhal_import_service.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/app/services/narwhal_import_service.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "narwhal_import_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/services/narwhal_import_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/notification_service.py",
+      "label": "notification_service.py",
+      "path": "backend/app/services/notification_service.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/app/services/notification_service.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "notification_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/services/notification_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/suspect_service.py",
+      "label": "suspect_service.py",
+      "path": "backend/app/services/suspect_service.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/spec_item.py",
+        "to": "backend/app/services/suspect_service.py",
+        "returnTo": "backend/app/models/spec_item.py",
+        "hops": [
+          "suspect_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/spec_item.py",
+          "backend/app/services/suspect_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/traceability_service.py",
+      "label": "traceability_service.py",
+      "path": "backend/app/services/traceability_service.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/app/services/traceability_service.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "traceability_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/services/traceability_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/contract/test_ai_review_contract.py",
+      "label": "test_ai_review_contract.py",
+      "path": "backend/tests/contract/test_ai_review_contract.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/tests/contract/test_ai_review_contract.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "test_ai_review_contract.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/tests/contract/test_ai_review_contract.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/contract/test_documents_contract.py",
+      "label": "test_documents_contract.py",
+      "path": "backend/tests/contract/test_documents_contract.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/tests/contract/test_documents_contract.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "test_documents_contract.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/tests/contract/test_documents_contract.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/contract/test_export_contract.py",
+      "label": "test_export_contract.py",
+      "path": "backend/tests/contract/test_export_contract.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/tests/contract/test_export_contract.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "test_export_contract.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/tests/contract/test_export_contract.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/contract/test_imports_contract.py",
+      "label": "test_imports_contract.py",
+      "path": "backend/tests/contract/test_imports_contract.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/tests/contract/test_imports_contract.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "test_imports_contract.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/tests/contract/test_imports_contract.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/contract/test_traceability_contract.py",
+      "label": "test_traceability_contract.py",
+      "path": "backend/tests/contract/test_traceability_contract.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/tests/contract/test_traceability_contract.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "test_traceability_contract.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/tests/contract/test_traceability_contract.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/integration/test_document_lifecycle.py",
+      "label": "test_document_lifecycle.py",
+      "path": "backend/tests/integration/test_document_lifecycle.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/tests/integration/test_document_lifecycle.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "test_document_lifecycle.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/tests/integration/test_document_lifecycle.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/integration/test_traceability_impacts.py",
+      "label": "test_traceability_impacts.py",
+      "path": "backend/tests/integration/test_traceability_impacts.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/tests/integration/test_traceability_impacts.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "test_traceability_impacts.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/tests/integration/test_traceability_impacts.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/unit/test_dependency_engine.py",
+      "label": "test_dependency_engine.py",
+      "path": "backend/tests/unit/test_dependency_engine.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/spec_item.py",
+        "to": "backend/tests/unit/test_dependency_engine.py",
+        "returnTo": "backend/app/models/spec_item.py",
+        "hops": [
+          "test_dependency_engine.py"
+        ],
+        "pathIds": [
+          "backend/app/models/spec_item.py",
+          "backend/tests/unit/test_dependency_engine.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/unit/test_narwhal_import_service.py",
+      "label": "test_narwhal_import_service.py",
+      "path": "backend/tests/unit/test_narwhal_import_service.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/tests/unit/test_narwhal_import_service.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "test_narwhal_import_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/tests/unit/test_narwhal_import_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/unit/test_notification_service.py",
+      "label": "test_notification_service.py",
+      "path": "backend/tests/unit/test_notification_service.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/spec_item.py",
+        "to": "backend/tests/unit/test_notification_service.py",
+        "returnTo": "backend/app/models/spec_item.py",
+        "hops": [
+          "test_notification_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/spec_item.py",
+          "backend/tests/unit/test_notification_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/unit/test_traceability_rules.py",
+      "label": "test_traceability_rules.py",
+      "path": "backend/tests/unit/test_traceability_rules.py",
+      "type": "document",
+      "distance": 1,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/spec_item.py",
+        "to": "backend/tests/unit/test_traceability_rules.py",
+        "returnTo": "backend/app/models/spec_item.py",
+        "hops": [
+          "test_traceability_rules.py"
+        ],
+        "pathIds": [
+          "backend/app/models/spec_item.py",
+          "backend/tests/unit/test_traceability_rules.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/api/dependencies/authz.py",
+      "label": "authz.py",
+      "path": "backend/app/api/dependencies/authz.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/api/dependencies/authz.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "errors.py",
+          "authz.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/core/errors.py",
+          "backend/app/api/dependencies/authz.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/api/routes/ai_reviews.py",
+      "label": "ai_reviews.py",
+      "path": "backend/app/api/routes/ai_reviews.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/api/routes/ai_reviews.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "router.py",
+          "ai_reviews.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/api/router.py",
+          "backend/app/api/routes/ai_reviews.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/api/routes/dashboard.py",
+      "label": "dashboard.py",
+      "path": "backend/app/api/routes/dashboard.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/api/routes/dashboard.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "router.py",
+          "dashboard.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/api/router.py",
+          "backend/app/api/routes/dashboard.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/api/routes/documents.py",
+      "label": "documents.py",
+      "path": "backend/app/api/routes/documents.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/api/routes/documents.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "router.py",
+          "documents.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/api/router.py",
+          "backend/app/api/routes/documents.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/api/routes/exports.py",
+      "label": "exports.py",
+      "path": "backend/app/api/routes/exports.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/api/routes/exports.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "router.py",
+          "exports.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/api/router.py",
+          "backend/app/api/routes/exports.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/api/routes/imports.py",
+      "label": "imports.py",
+      "path": "backend/app/api/routes/imports.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/api/routes/imports.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "router.py",
+          "imports.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/api/router.py",
+          "backend/app/api/routes/imports.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/api/routes/traceability.py",
+      "label": "traceability.py",
+      "path": "backend/app/api/routes/traceability.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/api/routes/traceability.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "router.py",
+          "traceability.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/api/router.py",
+          "backend/app/api/routes/traceability.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/schemas/ai_review.py",
+      "label": "ai_review.py",
+      "path": "backend/app/schemas/ai_review.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/schemas/ai_review.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "ai_review.py",
+          "ai_review.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/ai_review.py",
+          "backend/app/schemas/ai_review.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/schemas/export.py",
+      "label": "export.py",
+      "path": "backend/app/schemas/export.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/schemas/export.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "ai_review.py",
+          "export.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/ai_review.py",
+          "backend/app/schemas/export.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/ai_decision_service.py",
+      "label": "ai_decision_service.py",
+      "path": "backend/app/services/ai_decision_service.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/services/ai_decision_service.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "errors.py",
+          "ai_decision_service.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/core/errors.py",
+          "backend/app/services/ai_decision_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/ai_review_service.py",
+      "label": "ai_review_service.py",
+      "path": "backend/app/services/ai_review_service.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/services/ai_review_service.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "errors.py",
+          "ai_review_service.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/core/errors.py",
+          "backend/app/services/ai_review_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/audit_service.py",
+      "label": "audit_service.py",
+      "path": "backend/app/services/audit_service.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/services/audit_service.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "audit_event.py",
+          "audit_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/audit_event.py",
+          "backend/app/services/audit_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/document_conversion_service.py",
+      "label": "document_conversion_service.py",
+      "path": "backend/app/services/document_conversion_service.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/services/document_conversion_service.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "errors.py",
+          "document_conversion_service.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/core/errors.py",
+          "backend/app/services/document_conversion_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/export_service.py",
+      "label": "export_service.py",
+      "path": "backend/app/services/export_service.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/app/services/export_service.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "errors.py",
+          "export_service.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/core/errors.py",
+          "backend/app/services/export_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/app/services/export_validation_service.py",
+      "label": "export_validation_service.py",
+      "path": "backend/app/services/export_validation_service.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/app/services/export_validation_service.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "export_job.py",
+          "export_validation_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/export_job.py",
+          "backend/app/services/export_validation_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/integration/test_ai_review_workflow.py",
+      "label": "test_ai_review_workflow.py",
+      "path": "backend/tests/integration/test_ai_review_workflow.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/tests/integration/test_ai_review_workflow.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "ai_review.py",
+          "test_ai_review_workflow.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/ai_review.py",
+          "backend/tests/integration/test_ai_review_workflow.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/integration/test_export_workflow.py",
+      "label": "test_export_workflow.py",
+      "path": "backend/tests/integration/test_export_workflow.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/tests/integration/test_export_workflow.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "export_job.py",
+          "test_export_workflow.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/export_job.py",
+          "backend/tests/integration/test_export_workflow.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/unit/test_ai_review_decisions.py",
+      "label": "test_ai_review_decisions.py",
+      "path": "backend/tests/unit/test_ai_review_decisions.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/main.py",
+        "to": "backend/tests/unit/test_ai_review_decisions.py",
+        "returnTo": "backend/app/main.py",
+        "hops": [
+          "errors.py",
+          "test_ai_review_decisions.py"
+        ],
+        "pathIds": [
+          "backend/app/main.py",
+          "backend/app/core/errors.py",
+          "backend/tests/unit/test_ai_review_decisions.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/unit/test_attribute_validation.py",
+      "label": "test_attribute_validation.py",
+      "path": "backend/tests/unit/test_attribute_validation.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/tests/unit/test_attribute_validation.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "attribute_validation_service.py",
+          "test_attribute_validation.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/services/attribute_validation_service.py",
+          "backend/tests/unit/test_attribute_validation.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/unit/test_dashboard_service.py",
+      "label": "test_dashboard_service.py",
+      "path": "backend/tests/unit/test_dashboard_service.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/document.py",
+        "to": "backend/tests/unit/test_dashboard_service.py",
+        "returnTo": "backend/app/models/document.py",
+        "hops": [
+          "dashboard_service.py",
+          "test_dashboard_service.py"
+        ],
+        "pathIds": [
+          "backend/app/models/document.py",
+          "backend/app/services/dashboard_service.py",
+          "backend/tests/unit/test_dashboard_service.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    },
+    {
+      "id": "backend/tests/unit/test_export_validation.py",
+      "label": "test_export_validation.py",
+      "path": "backend/tests/unit/test_export_validation.py",
+      "type": "document",
+      "distance": 2,
+      "status": "suspect_document",
+      "navigation": {
+        "from": "backend/app/models/__init__.py",
+        "to": "backend/tests/unit/test_export_validation.py",
+        "returnTo": "backend/app/models/__init__.py",
+        "hops": [
+          "export_job.py",
+          "test_export_validation.py"
+        ],
+        "pathIds": [
+          "backend/app/models/__init__.py",
+          "backend/app/models/export_job.py",
+          "backend/tests/unit/test_export_validation.py"
+        ]
+      },
+      "reason": "Connected via relation graph within selected depth"
+    }
+  ],
+  "guidance": [
+    "Review suspect_paragraph first for direct content alignment impact.",
+    "Review suspect_trace for traceability consistency and link completeness.",
+    "After review completion, clear SUSPECT status with reviewer and timestamp evidence."
+  ]
+};

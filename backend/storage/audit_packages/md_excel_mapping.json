@@ -1,0 +1,10 @@
+{
+  "requirements": {
+    "titleColumn": "C",
+    "bodyColumn": "M"
+  },
+  "architecture": {
+    "titleColumn": "C",
+    "bodyColumn": "V"
+  }
+}

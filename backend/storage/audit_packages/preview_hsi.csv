@@ -1,0 +1,14 @@
+excel_row,type_column,type_value,title_column,title,body_column,body
+4,B,Information,C,Hardware-software interface (HSI) specifications. (basic functions),V,"Describe the non-safety-related functional interface provided by the hardware for software use. Detail the register addresses, bit definitions, control logic, and data structures. / 描述硬體提供給軟體使用的非安全相關功能介面。應詳細說明暫存器位址、位元定義、控制邏輯、資料結構等。
+
+Interface connected between hardware element and software element, each hardware-hardware Internal interface topic aim to descript purpose of interface and simple use case description."
+5,B,Information,C,[Hardware-software interface],V,Description of HSI and related functions
+6,B,Information,C,Hardware-software interface (HSI) specifications. (safety functions),V,"Describe the safety-related functional interface provided by the hardware for software use. Detail the registers, bit definitions, and control logic used for safety mechanism control, fault diagnosis, and safety state reading. / 描述硬體提供給軟體使用的安全相關功能介面。應詳細說明用於安全機制控制、故障診斷、安全狀態讀取的暫存器、位元定義和控制邏輯。
+
+Interface connected between hardware element and software element, each hardware-software interface topic aim to describe purpose of interface and simple use case description."
+7,B,Information,C,[Hardware-software interface],V,"Safety related HSI interface description.
+
+|  |  |  |  |
+| --- | --- | --- | --- |
+| base\_address | Begin | End | description |
+| Starting address of the 4GB address space | Start offset address | End offset address | Interface description of address region |"
